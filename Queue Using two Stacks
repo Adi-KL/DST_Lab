@@ -1,0 +1,33 @@
+#Q for number of queries
+q = int(input())
+
+# Initialize two stacks for enqueue and dequeue
+stack_in = []
+stack_out = []
+
+
+for i in range(q):
+    query = input().split()  # Read each query
+    
+    if query[0] == '1':
+        # Enqueue operation: 
+        x = int(query[1])
+        stack_in.append(x)
+    
+    elif query[0] == '2':
+        # Dequeue operation
+        if not stack_out:
+            # If stack_out is empty
+            while stack_in:
+                stack_out.append(stack_in.pop())
+        # Pop from stack_out if not empty
+        if stack_out:
+            stack_out.pop()
+    
+    elif query[0] == '3':
+        if not stack_out:
+            # If stack_out is empty
+            while stack_in:
+                stack_out.append(stack_in.pop())
+        if stack_out:
+            print(stack_out[-1])  # Prints the front element
